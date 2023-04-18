@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Recipes</title>
+    <link href="style.css" rel="stylesheet"/>
+    <a href="#main" class="skip">Skip to main content link</a>
+</head>
+<body>
+<header>
+    <h3 class="logo-title">
+        MOMO'S <br />
+        HOMEMADE
+    </h3>
+    <a class="link active" href="recipe.html">RECIPE</a>
+    <a class="link" href="about.html">ABOUT</a>
+</header>
+<main id="main">
+    <div class="menus">
+        <div class="menu-item">MOMO SHU</div>
+        <div class="menu-item">Bangzhao Shu</div>
+        <div class="menu-item">Ziying Liu</div>
+    </div>
+    <div class="recipes" id="recipes">
+        <div class="recipe">
+            <img src="images/food1.jpg" />
+            <h5>Turkey and Veggie</h5>
+        </div>
+    </div>
+</main>
+<footer>
+    Have a great meal!
+</footer>
+
+<script>
+
+    let types = ['MOMO SHU', 'Bangzhao Shu', 'Ziying Liu'];
+    let recipes = {
+        [types[0]]: [
+          {
+            image: 'images/food1.jpg',
+            name: 'TURKEY AND VEGGIE'
+          }
+        ],
+      [types[1]]: [
+        {
+          image: 'images/food2.jpg',
+          name: 'Family styled tofu'
+        }
+      ],
+      [types[2]]: [
+        {
+          image: 'images/food3.jpg',
+          name: 'Spaghetti Carbonara'
+        }
+      ]
+    }
+    let type = 'MOMO SHU';
+    const menuItems = document.querySelectorAll('.menu-item');
+    for (let i = 0; i < menuItems.length; i ++) {
+      const menuItem = menuItems[i];
+      menuItem.addEventListener('click', (e) => {
+        type = e.target.innerHTML;
+        renderTypes();
+
+      })
+    }
+    function renderRecipes() {
+        let foods = recipes[type];
+        let innerHTML = foods.map(food => {
+          return `
+            <a href="food.html?name=${food.name}" class="recipe">
+            <img src="${food.image}" />
+            <h5>${food.name}</h5>
+        </a>
+          `;
+        }).join('');
+      document.querySelector('#recipes').innerHTML = innerHTML;
+    }
+    function renderTypes() {
+
+      for (let i = 0; i < menuItems.length; i ++) {
+        const menuItem = menuItems[i];
+        if (menuItem.innerHTML === type) {
+          menuItem.classList.add('active');
+        } else {
+          menuItem.classList.remove('active');
+        }
+      }
+      renderRecipes();
+    }
+    renderTypes();
+</script>
+</body>
+</html>

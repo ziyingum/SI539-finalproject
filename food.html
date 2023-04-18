@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Food</title>
+    <link href="style.css" rel="stylesheet"/>
+    <a href="#main" class="skip">Skip to main content link</a>
+</head>
+<body>
+<header id="header">
+    <h3 class="logo-title">
+        MOMO'S <br />
+        HOMEMADE
+    </h3>
+    <a class="link" href="recipe.html">RECIPE</a>
+    <a class="link active" href="about.html">ABOUT</a>
+</header>
+<main id="main">
+    <p>
+        <a class="back" href="recipe.html">Back</a>
+    </p>
+    <div class="container">
+        <h1 class="food-title" id="name">Recipe Title</h1>
+        <div class="sub-area">
+            <div class="ingredients">
+                <h4>Ingredients</h4>
+                <ul id="ingredients">
+
+                </ul>
+            </div>
+            <div class="recipe-image">
+                <img id="image" src="https://via.placeholder.com/150" alt="Recipe Image">
+            </div>
+        </div>
+        <div class="instructions">
+            <h4>Instructions</h4>
+            <ol id="instructions">
+
+            </ol>
+            <div class="back-button-box">
+                <a href="#header" class="back-button">Back To Top</a>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+<footer>
+    Have a great meal!
+</footer>
+<script>
+    const foods = [
+      {
+        name: 'Spaghetti Carbonara',
+        image: 'images/food3.jpg',
+        instructions: [
+          "Salt",
+          "2large eggs and 2 large yolks, room temperature",
+          "1ounce (about ⅓ packed cup) grated pecorino Romano, plus additional for serving",
+          "1ounce (about ⅓ packed cup) grated Parmesan",
+          "Coarsely ground black pepper",
+          "1tablespoon olive oil",
+          "3½ounces of slab guanciale (see recipe), pancetta or bacon, sliced into pieces about ¼ inch thick by ⅓ inch square",
+          "12ounces spaghetti (about ¾ box)"
+        ],
+        ingredients: [
+          "Place a large pot of lightly salted water (no more than 1 tablespoon salt) over high heat, and bring to a boil. Fill a large bowl with hot water for serving, and set aside.",
+          "In a mixing bowl, whisk together the eggs, yolks and pecorino and Parmesan. Season with a pinch of salt and generous black pepper.",
+          "Set the water to boil. Meanwhile, heat oil in a large skillet over medium heat, add the pork, and sauté until the fat just renders, on the edge of crispness but not hard. Remove from heat and set aside.",
+          "Add pasta to the water and boil until a bit firmer than al dente. Just before pasta is ready, reheat guanciale in skillet, if needed. Reserve 1 cup of pasta water, then drain pasta and add to the skillet over low heat. Stir for a minute or so.",
+          "Empty serving bowl of hot water. Dry it and add hot pasta mixture. Stir in cheese mixture, adding some reserved pasta water if needed for creaminess. Serve immediately, dressing it with a bit of additional grated pecorino and pepper."
+        ]
+      },
+      {
+        name: 'Family styled tofu',
+        image: 'images/food2.jpg',
+        ingredients: [
+          'extra firm tofu',
+          'salt',
+          'CHILI SAUCE',
+          'The full and printable recipe for the sauce and tofu is in the recipe card below!',
+          'soy sauce',
+         'chili sauce – red chilli sauces like sriracha or Lee Kum Kee chili garlic sauce, adjust to desired spice',
+        'red chili flakes or powder adjust to desired spice',
+        'brown sugar',
+         'tomato ketchup',
+        'cumin seed powder',
+        'rice vinegar or distilled white vinegar',
+        'water',
+          'dark mushroom soy sauce (optional for extra colour and umami)'
+        ],
+        instructions: [
+          "Prepare the tofu: press your tofu to drain out excess water. This will get extra moisture out and allow the tofu to soak in more flavour. Slice the tofu into the 1-inch (2.5-cm) cubes or other shape of your choice.",
+          "Sprinkle the salt over the tofu and toss around to coat well.",
+          "If baking or air-frying: line your baking tray /air fryer basket with parchment paper and place the tofu. Spray with a generous amount of oil. Bake of air-fry at 200C/400F for 15-20 mins(if air frying) or around 30 minutes (if baking). You can flip the tofu halfway through cooking until golden brown.",
+          "Note: Be sure not to over bake or over fry your tofu because they can turn out too dry. I kept my tofu just lightly golden brown and still soft on the inside since I don’t want tofu that’s too tough to the bite (since baking and air- frying can yield tough pieces when cooked too long).",
+          "Pan-frying option: pan-fry the tofu over medium heat on a non-stick pan with some oil until golden brown and crisp on all sides.",
+          "Once the tofu is cooked, set these aside."
+        ]
+      },
+      {
+        image: 'images/food1.jpg',
+        name: 'Turkey and Veggie',
+        ingredients: [
+          '907.18 g lean ground turkey',
+          '2 tablespoons chicken liver finely diced',
+          '2 medium carrots coarsely chopped',
+          '110 g green beans diced',
+          '100 g cauliflower florets',
+          '2 tablespoons olive oil'
+        ],
+        instructions: [
+          'Add 1 1/2 cups water to a double boiler, place vegetables in a steam basket over the pot and cover. Heat until boiling, reduce heat to a low-boil and steam until veggies are tender, about 10 minutes.',
+          'In the meantime, add the turkey and liver to a large skillet and cook on medium-high heat until done. Drain off any fat and discard. Chop veggies or pulse in a food processor. Add veggies to cooked turkey.',
+          'Add the olive oil and toss with turkey & veggie mixture. Allow to cool before dividing into freezer safe containers.'
+    ]
+      }
+    ]
+    const url = location.href;
+    const name = decodeURIComponent(url.split('=')[1]);
+    const food = foods.find(item => item.name.toUpperCase() === name.toUpperCase());
+
+    document.querySelector('#name').innerHTML = food.name;
+    document.querySelector('#image').src = food.image;
+    document.querySelector('#ingredients').innerHTML = food.ingredients.map(item => {
+      return `<li>${item}</li>`
+    }).join('');
+    document.querySelector('#instructions').innerHTML = food.instructions.map(item => {
+      return `<li>${item}</li>`
+    }).join('');
+
+</script>
+</body>
+</html>
